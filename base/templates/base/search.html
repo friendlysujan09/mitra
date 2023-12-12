@@ -39,7 +39,7 @@
 <nav>
     <div class="container">
         <div class="log">
-            <img src="{% static 'images/mitra.png' %}" style="height:75px;cursor:pointer;">
+            <a href="/"><img src="{% static 'images/mitra.png' %}" style="height:75px;cursor:pointer;"></a>
         </div>
 
         <!-- Search bar -->
@@ -128,7 +128,7 @@
             <div class="feed search-feed">
                     <div class="user">
                         <div class="empty-state__message"
-                             style="color: #9a35dd;font-weight: bold;font-size: 30px; text-align: center;">No User found
+                             style="color: #9a35dd;font-size: 20px; text-align: center;">No User found
                         <a href="{% url 'home' %}" style="text-decoration: none; color: #fff;">
                             <button type="submit" class="btn btn-success">Go back</button>
                         </a>
@@ -201,7 +201,7 @@
             <div class="feed search-feed">
                     <div class="user">
                         <div class="empty-state__message"
-                             style="color: #9a35dd;font-weight: bold;font-size: 30px; text-align: center;">No Post
+                             style="color: #9a35dd;font-size: 20px; text-align: center;">No Post
                             found
                         <a href="{% url 'home' %}" style="text-decoration: none; color: #fff;">
                             <button type="submit" class="btn btn-success">Go back</button>
