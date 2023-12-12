@@ -1,8 +1,7 @@
 <!-- {% extends 'main.html' %} -->
 {% load static %} 
 {% block styles %}
-<!-- Replace {name} with the respective css file -->
-<link rel="stylesheet" href="{% static 'styles/signup.scss' %}" />
+<link rel="stylesheet" href="{% static 'styles/new_signup.css' %}" />
 <style>
 .messages {
             list-style: none;
@@ -13,49 +12,48 @@
             border: 1px solid #ff6666; /* Darker red border */
             border-radius: 5px; /* Rounded corners */
         }
+.admin_box{
+
+margin-top:10px;
+
+}
 </style>
 {% endblock %}
 
-{% block content %} 
-<div class="container" id="container">
+{% block content %}
+    <div class="signup-container">
+        {% if messages %}
+          <div class="messages">
+            {% for message in messages %}
+              <p {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+            {% endfor %}
+          </div>
+        {% endif %}
+        <img src="{% static 'images/mitra.png' %}" alt="Your Logo">
+        <form id="signup-form" action="{% url 'signup' %}" method="POST">
+            {% csrf_token %}
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Enter your username" autocomplete="off" required>
 
-<div class="form-container sign-in-container">
-    {% if messages %}
-      <div class="messages">
-        {% for message in messages %}
-          <p {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
-        {% endfor %}
-      </div>
-    {% endif %}
-    <form action="{% url 'signup' %}" method="POST">
-        {% csrf_token %}
-        <h1 style="color:rgb(107,76,230)" style="position:relative;bottom:15px;">Sign Up</h1>
-        <input type="text" placeholder="Username" name="username" id="username" autocomplete="off" />
-        <br>
-        <input type="email" placeholder="Email" name="email" id="email" autocomplete="off"/>
-        <br>
-        <input type="password" placeholder="Password" name="password" id="password" autocomplete="off" />
-        <br>
-        <button>Sign Up</button>
-    </form>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" autocomplete="off" required>
 
-</div>
-<div class="overlay-container">
-    <div class="overlay">
-        <div class="overlay-panel overlay-left">
-            <h1>Welcome Back User!</h1>
-            <p>Login to stay connected</p>
-            <button class="ghost" id="signIn">Sign In</button>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" autocomplete="off" required>
+
+            <button type="submit">Sign Up</button>
+        </form>
+        <div class="admin_box">
+            <a href="{% url 'login' %}" style="text-decoration:none;color:black;">
+                <h6>Already User? Sign in </h6>
+            </a>
         </div>
-        <div class="overlay-panel overlay-right">
-            <h1>Already a User?</h1>
-            <p>Enter your personal details to Sign In</p>
-              <a class="ghost" href="{% url 'login' %}" style="text-decoration:none;color:#fff;">
-                Login
-                </a>
-        </div>
+<!--        Admin Page-->
+<!--        <div class="admin_box">-->
+<!--            <a href="/admin" style="text-decoration:none;color:black;">-->
+<!--                <h6>Admin Page</h6>-->
+<!--            </a>-->
+<!--        </div>-->
     </div>
-</div>
-</div>
 
 {% endblock %}

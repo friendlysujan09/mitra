@@ -109,6 +109,9 @@ def signup(request):
         if email == '' or password == '' or username == '':
             messages.error(request,"Please fill all the fields.")
             return render(request,"base/signup.html")
+        if username[0].isdigit():
+            messages.error(request,"Username cannot start with numbers")
+            return render(request,"base/signup.html")
         
         elif User.objects.filter(username=username).exists(): 
             messages.add_message(request, messages.INFO, 'Username already exists.')
